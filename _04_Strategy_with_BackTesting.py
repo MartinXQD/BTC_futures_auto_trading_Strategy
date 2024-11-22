@@ -14,6 +14,12 @@ def determine_Long_Short(btc_df, periods=20, t=2.33):
     #Set Postion to Sell and Short the futures 
     btc_df['position'] = np.where(
         btc_df['Low'] <= btc_df['Lower'], -1, btc_df['position'])
+     btc_df['position'] = np.where(
+        (btc_df['position'] == 1) & (btc_df['Low'] <= btc_df['SMA']), 0, btc_df['position']
+    )
+    btc_df['position'] = np.where(
+        (btc_df['position'] == -1) & (btc_df['High'] >= btc_df['SMA']), 0, btc_df['position']
+    )
     #Propagate the previous position forward until a new signal is generated
     btc_df['position'] = btc_df['position'].ffill()
 
