@@ -1,11 +1,11 @@
 
 
 import numpy as np
-from _01_Data import get_data
+from _01_Import_Data_Frame import get_data
 
 btc_df = get_data()
 
-# Calculate Bolliner Band
+# Calculate Bollinger Band
 
 
 def BollingerBand(btc_df, periods=20, t=2.33):
