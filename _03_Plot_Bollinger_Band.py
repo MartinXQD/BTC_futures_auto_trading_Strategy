@@ -10,7 +10,7 @@ def plot_bollinger_band(btc_df):
     btc_df.set_index('Time', inplace=True)
     # plot Bollinger Band
     apdict = mpf.make_addplot(btc_df[['SMA', 'Upper', 'Lower']])
-    # Visualized BTC/USDT Futures 1-H K line
+    # Visualize BTC/USDT Futures 1-H K line
     mpf.plot(btc_df, type='candle', addplot=apdict, title='BTCUSDT Futures Price with Bollinger Bands',
              ylabel='Price', volume=False)
 
