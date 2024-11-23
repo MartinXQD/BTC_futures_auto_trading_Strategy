@@ -14,6 +14,19 @@ def determine_Long_Short(btc_df, periods=20, t=2.33):
     #Set Postion to Sell and Short the futures 
     btc_df['position'] = np.where(
         btc_df['Low'] <= btc_df['Lower'], -1, btc_df['position'])
+'''
+In this strategy, a signal change also indicates a closing of the current position (either take-profit or stop-loss) and simultaneously entering a reverse position (long or short) at the same time. 
+I attempted to add a condition where, during a long position, if the price retraced to the moving average (SMA), the position would be closed, and similarly for a short position. 
+Assuming the postion is Long, and the STOP-LOSS command should be  : 
+                btc_df['position'] = np.where( (btc_df['position'] == 1) & (btc_df['Low'] <= btc_df['SMA']) & (btc_df['Low'] > btc_df['Lower']), 0, btc_df['position'])
+
+However, the results showed a decrease in profitability. 
+Through experimentation, I discovered that this is due to the lack of consideration for the continuous nature of price movements in each row of data. 
+This causes a delay in executing stop-loss actions until the next candlestick, even if the price momentarily touched the SMA within the current candlestick. 
+In actual trading, such a stop-loss mechanism would likely improve profitability，
+especially since the current condition without a stop-loss has already endured greater drawdowns compared to the real-world scenario with stop-loss in place.
+'''
+
     #Propagate the previous position forward until a new signal is generated
     btc_df['position'] = btc_df['position'].ffill()
 
