@@ -7,8 +7,9 @@ btc_df = determine_Long_Short(btc_df)
 def alpha_calculation(btc_df):
     # the total compound return at the end
     last_return = btc_df['compounded_return'].iloc[-1]
+    # the price change for hold to the end
     price_change = (btc_df['Open'].iloc[-1] - btc_df['Open'].iloc[1]) / \
-        btc_df['Open'].iloc[1]  # the price change for hold to the end
+        btc_df['Open'].iloc[1]  
     alpha = last_return - price_change
     return alpha
 
