@@ -1,5 +1,5 @@
 from _02_Bollinger_Calculation import get_bollinger_data
-from _04_Strategy import determine_Long_Short
+from _04_Strategy_with_BackTesting import determine_Long_Short
 btc_df = get_bollinger_data()
 btc_df = determine_Long_Short(btc_df)
 
