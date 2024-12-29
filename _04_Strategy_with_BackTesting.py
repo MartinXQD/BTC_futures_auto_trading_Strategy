@@ -32,17 +32,17 @@ especially since the current condition without a stop-loss has already endured g
 
     return returns(btc_df)
 
-
+# Back testing Model 
 def returns(btc_df):
 
     btc_df['hrly_return'] = btc_df['Close'].pct_change(fill_method=None)
-    btc_df['Cumulated_return'] = 0.0
-    btc_df['Strategy_return'] = 0.0
-    btc_df['compounded_return'] = 0.0
-    btc_df['tradecount'] = 0
-    btc_df['position'] = btc_df['position'].fillna(0)
-    btc_df['hrly_return'] = btc_df['hrly_return'].fillna(0)
-    btc_df['Continuosly_return'] = 10000.00
+    btc_df['Cumulated_return'] = 0.0 # the accumulated return from period = 0 in percentage 
+    btc_df['Strategy_return'] = 0.0 # single return in percentage for each trade
+    btc_df['compounded_return'] = 0.0 # compounded returns in percentage for all trades 
+    btc_df['tradecount'] = 0 # number of trades 
+    btc_df['position'] = btc_df['position'].fillna(0) # long/short signal
+    btc_df['hrly_return'] = btc_df['hrly_return'].fillna(0) # hrly return in dollars 
+    btc_df['Continuosly_return'] = 10000.00 # the accumulated return from period = 0 in dollars 
 
     btc_df['hold_change'] = 10000.00
     added = 0.0
